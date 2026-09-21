@@ -1,24 +1,36 @@
-#include <ncurses.h>
+#include "../include/skyrimRL.h"
+
+Entity *player;
 
 void init() {
   initscr();
   noecho();
   curs_set(0);
-  raw();
+  //raw();
 }
 
 void cleanup() {
   endwin();
 }
 
-
-
 int main() {
+  int ch;
+  Position start_pos = {10, 20};
+  
   init();
-  mvprintw(LINES/2, COLS/2, "@");
+    
+  player = createPlayer(start_pos);
+  mvaddch(player->pos.y, player->pos.x, player->sprite);
 
-  refresh();
-  getch();
+  while(ch = getch())
+  {
+    if (ch == 'q') break;
+
+    handleInput(ch);
+    clear();
+    mvaddch(player->pos.y, player->pos.x, player->sprite);
+  }
+  
   cleanup();
 
   return 0;
