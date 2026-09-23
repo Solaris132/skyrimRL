@@ -7,7 +7,7 @@ TARGET = skyrimRL
 SRCS = ./src/*.c
 
 # 4. Default Target (The one run by default when you just type 'make')
-all: $(TARGET) run clean
+all: $(TARGET) run
 
 # 5. Rule to Link the Executable
 $(TARGET):
