@@ -1,37 +1,24 @@
 #include "../include/skyrimRL.h"
 
+const int MAP_HEIGHT = 25;
+const int MAP_WIDTH  = 100;
+
 Entity *player;
-
-void init() {
-  initscr();
-  noecho();
-  curs_set(0);
-  //raw();
-}
-
-void cleanup() {
-  endwin();
-}
+Tile **map;
 
 int main() {
-  int ch;
-  Position start_pos = {10, 20};
-  
-  init();
-    
+
+  Position start_pos;
+
+  cursesSetup();
+
+  map = createMapTiles();
+  start_pos = setupMap();
   player = createPlayer(start_pos);
-  mvaddch(player->pos.y, player->pos.x, player->sprite);
 
-  while(ch = getch())
-  {
-    if (ch == 'q') break;
+  gameLoop();
 
-    handleInput(ch);
-    clear();
-    mvaddch(player->pos.y, player->pos.x, player->sprite);
-  }
-  
-  cleanup();
+  closeGame();
 
   return 0;
 }

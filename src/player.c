@@ -13,37 +13,51 @@ Entity *createPlayer(Position start_pos)
 
 void handleInput(int input)
 {
+
+  Position newPos = { player->pos.y, player->pos.x };
+
   switch(input)
   {
     case 'k':
-      player->pos.y--;
+      newPos.y--;
       break;
     case 'j':
-      player->pos.y++;
+      newPos.y++;
       break;
     case 'h':
-      player->pos.x--;
+      newPos.x--;
       break;
     case 'l':
-      player->pos.x++;
+      newPos.x++;
       break;
     case 'y':
-      player->pos.x--;
-      player->pos.y--;
+      newPos.x--;
+      newPos.y--;
       break;
     case 'u':
-      player->pos.x++;
-      player->pos.y--;
+      newPos.x++;
+      newPos.y--;
       break;
     case 'b':
-      player->pos.x--;
-      player->pos.y++;
+      newPos.x--;
+      newPos.y++;
       break;
     case 'n':
-      player->pos.x++;
-      player->pos.y++;
+      newPos.x++;
+      newPos.y++;
       break;
     default:
       break;
+  }
+
+  movePlayer(newPos);
+}
+
+void movePlayer(Position newPos)
+{
+  if (map[newPos.y][newPos.x].walkable)
+  {
+    player->pos.y = newPos.y;
+    player->pos.x = newPos.x;
   }
 }
