@@ -9,17 +9,23 @@ Tile **map;
 int main() {
 
   Position start_pos;
+  bool compatibleTerminal;
 
-  cursesSetup();
-  srand(time(NULL));
+  compatibleTerminal = cursesSetup();
 
-  map = createMapTiles();
-  start_pos = setupMap();
-  player = createPlayer(start_pos);
+  if (compatibleTerminal) {
+    srand(time(NULL));
 
-  gameLoop();
+    map = createMapTiles();
+    start_pos = setupMap();
+    player = createPlayer(start_pos);
 
-  closeGame();
+    gameLoop();
+
+    closeGame();
+  } else {
+      endwin();
+  }
 
   return 0;
 }

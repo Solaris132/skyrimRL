@@ -1,6 +1,6 @@
 CC = gcc
 FLAGS = -Wall -Wextra -pedantic -std=c99
-LDFLAGS = -I./include/ -lncurses
+LDFLAGS = -I./include/ -lncurses -lm
 
 TARGET = skyrimRL
 

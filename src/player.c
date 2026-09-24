@@ -7,6 +7,7 @@ Entity *createPlayer(Position start_pos)
   newPlayer->pos.y = start_pos.y;
   newPlayer->pos.x = start_pos.x;
   newPlayer->sprite = '@';
+  newPlayer->color = COLOR_PAIR(VISIBLE_COLOR);
 
   return newPlayer;
 }
@@ -57,7 +58,9 @@ void movePlayer(Position newPos)
 {
   if (map[newPos.y][newPos.x].walkable)
   {
+    clearFOV(player);
     player->pos.y = newPos.y;
     player->pos.x = newPos.x;
+    makeFOV(player);
   }
 }

@@ -1,4 +1,5 @@
 #include "../include/skyrimRL.h"
+#include <ncurses.h>
 
 Tile **createMapTiles()
 {
@@ -10,7 +11,11 @@ Tile **createMapTiles()
     for (int x = 0; x < MAP_WIDTH; x++)
     {
       tiles[y][x].sprite = '#';
+      tiles[y][x].color = COLOR_PAIR(VISIBLE_COLOR);
       tiles[y][x].walkable = false;
+      tiles[y][x].transparent = false;
+      tiles[y][x].visible = false;
+      tiles[y][x].seen = false;
     }
   }
 
