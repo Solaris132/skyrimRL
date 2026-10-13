@@ -15,6 +15,6 @@ $(TARGET):
 
 run:
 	./$(TARGET)
-
+;
 clean:
 	rm $(TARGET)
